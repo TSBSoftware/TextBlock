@@ -1,4 +1,4 @@
-﻿module TSBSoftware.TextblockTests
+﻿module TextblockTests
 
 open System
 
@@ -47,7 +47,7 @@ let ``Two line string gets returned with no padding.`` () =
     Assert.That(actual, Is.EqualTo(expected))
 
 [<Test>]
-let ``Newline characters can be escaped.`` () =
+let ``New lines are omitted when \ is used.`` () =
     let actual =
         """
         Hello, World! \
@@ -149,15 +149,35 @@ let ``User definded indent and indent char can be provided.`` () =
 [<Test>]
 let ``All features are supported when mixed.`` () =
     let actual =
-        """
+        $"""
           A
         B  |
         
         C\
          D\
-          E
+          EF{nl}GH
         """
             .TextBlock(indent = 1, indentChar = '+')
 
-    let expected = $"+  A{nl}+B  {nl}+{nl}+C D  E"
+    let expected = $"+  A{nl}+B  {nl}+{nl}+C D  EF{nl}+GH"
+    Assert.That(actual, Is.EqualTo(expected))
+
+[<Test>]
+let ``Embedded newline characters create new lines.`` () =
+
+    let actual =
+        $"""
+        Name | Address | City
+        Bob Smith | 123 Anytown St{nl}Apt 100 | Vancouver
+        Jon Brown | 1000 Golden Place{nl}Suite 5 | Santa Ana
+        """
+            .TextBlock()
+
+    let expected =
+        $"Name | Address | City{nl}"
+        + $"Bob Smith | 123 Anytown St{nl}"
+        + $"Apt 100 | Vancouver{nl}"
+        + $"Jon Brown | 1000 Golden Place{nl}"
+        + $"Suite 5 | Santa Ana"
+
     Assert.That(actual, Is.EqualTo(expected))

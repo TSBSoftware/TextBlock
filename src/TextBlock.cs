@@ -1,30 +1,30 @@
 ﻿namespace TextBlock;
 
 using System;
+using System.IO;
 using System.Linq;
 
 public static class TextBlockExtentions
 {
-    public static string TextBlock(this string content)
+    /// <summary>
+    /// Auto trims extra indentation space characters to the level of the leftmost line.
+    /// </summary>
+    /// <param name="content">String being blocked.</param>
+    /// <param name="indent">Number indentation to be added to each line.</param>
+    /// <param name="indentChar">Alternate indentation character. Default is space.</param>
+    /// <returns></returns>
+    public static string TextBlock(this string content, int indent = 0, char indentChar = ' ')
     {
-        return TextBlock(content, 0, ' ');
-    }
-
-    public static string TextBlock(this string content, int indent = 4, char indentChar = ' ')
-    {
-        var lines =
-            content
-                .Split(Environment.NewLine)
-                .Skip(1)
-                .ToList();
+        // Skip the first item to omit the inital newline in the string.
+        var lines = splitToLines(content).Skip(1).ToList();
 
         var indentSize =
-            lines.Where(line => !string.IsNullOrEmpty(line))
+            lines.Where(line => !string.IsNullOrEmpty(line) && line.StartsWith(" "))
                  .Min(line => line.TakeWhile(char.IsWhiteSpace).Count());
 
         var blockedLines =
             lines
-                .Select(line => line[indentSize..])
+                .Select(line => trimStart(line, indentSize))
                 .Select(line => line.TrimEnd())
                 .Select(line => line.TrimEnd('|'))
                 .Select(line => line.Replace(@"\s", " "))
@@ -32,6 +32,7 @@ public static class TextBlockExtentions
 
         if (blockedLines.Count > 0)
         {
+            // Remove the final newline.
             blockedLines.RemoveAt(lines.Count - 1);
         }
 
@@ -45,7 +46,7 @@ public static class TextBlockExtentions
                 blockedLines
                     .Aggregate((l, r) =>
                     {
-                        if (l.EndsWith('\\'))
+                        if (l.EndsWith(@"\"))
                         {
                             return l.TrimEnd('\\') + r;
                         }
@@ -56,6 +57,34 @@ public static class TextBlockExtentions
                         }
                     });
             return joined.PadLeft(joined.Length + indent, indentChar);
+        }
+    }
+
+    /// <summary>
+    /// Support method for more efficient splitting of the content string.
+    /// </summary>
+    static IEnumerable<string> splitToLines(string content)
+    {
+        using var reader = new StringReader(content);
+        string line;
+        while ((line = reader.ReadLine()) != null)
+        {
+            yield return line;
+        }
+    }
+
+    // Handle special case of trimming the start of the string when embedded
+    // newline characters are in the content string. Without this, the lines
+    // are not properly trimmed and content can be lost.
+    static string trimStart(string line, int trimSize)
+    {
+        if (line.StartsWith("".PadLeft(trimSize, ' ')))
+        {
+            return line.Substring(trimSize);
+        }
+        else
+        {
+            return line.TrimStart();
         }
     }
 }
