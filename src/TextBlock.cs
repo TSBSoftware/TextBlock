@@ -1,6 +1,7 @@
 ﻿namespace TextBlock;
 
 using System;
+using System.Text.RegularExpressions;
 using System.IO;
 using System.Linq;
 
@@ -19,7 +20,7 @@ public static class TextBlockExtentions
         var lines = splitToLines(content).Skip(1).ToList();
 
         var indentSize =
-            lines.Where(line => !string.IsNullOrEmpty(line) && line.StartsWith(" "))
+            lines.Where(line => Regex.IsMatch(line, @"^[\s]+"))
                  .Min(line => line.TakeWhile(char.IsWhiteSpace).Count());
 
         var blockedLines =
@@ -27,7 +28,6 @@ public static class TextBlockExtentions
                 .Select(line => trimStart(line, indentSize))
                 .Select(line => line.TrimEnd())
                 .Select(line => line.TrimEnd('|'))
-                .Select(line => line.Replace(@"\s", " "))
                 .ToList();
 
         if (blockedLines.Count > 0)
@@ -78,7 +78,8 @@ public static class TextBlockExtentions
     // are not properly trimmed and content can be lost.
     static string trimStart(string line, int trimSize)
     {
-        if (line.StartsWith("".PadLeft(trimSize, ' ')))
+        if (line.StartsWith("".PadLeft(trimSize, ' ')) ||
+            line.StartsWith("".PadLeft(trimSize, '\t')))
         {
             return line.Substring(trimSize);
         }

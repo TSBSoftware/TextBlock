@@ -60,18 +60,6 @@ let ``New lines are omitted when \ is used.`` () =
     Assert.That(actual, Is.EqualTo(expected))
 
 [<Test>]
-let ``Spaces that would be stripped can represented by \s.`` () =
-    let actual =
-        """
-        Hello, World!\s
-        Who are you?\s\s\s
-        """
-            .TextBlock()
-
-    let expected = $"Hello, World! {nl}Who are you?   "
-    Assert.That(actual, Is.EqualTo(expected))
-
-[<Test>]
 let ``Indented content is preserved.`` () =
     let actual =
         """
@@ -82,6 +70,19 @@ let ``Indented content is preserved.`` () =
             .TextBlock()
 
     let expected = $"<div>{nl}    <p>Hello</p>{nl}</div>"
+    Assert.That(actual, Is.EqualTo(expected))
+
+[<Test>]
+let ``Indented content is preserved when using tabs.`` () =
+    let actual =
+        """
+		<div>
+			<p>Hello</p>
+		</div>
+        """
+            .TextBlock()
+
+    let expected = $"<div>{nl}	<p>Hello</p>{nl}</div>"
     Assert.That(actual, Is.EqualTo(expected))
 
 [<Test>]
