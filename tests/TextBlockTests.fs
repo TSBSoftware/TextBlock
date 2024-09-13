@@ -122,7 +122,7 @@ let ``Lines ending in | keep trailing spaces.`` () =
     Assert.That(actual, Is.EqualTo(expected))
 
 [<Test>]
-let ``User definded indent can be provided.`` () =
+let ``User defined indent can be provided.`` () =
     let actual =
         """
         A
@@ -135,7 +135,7 @@ let ``User definded indent can be provided.`` () =
     Assert.That(actual, Is.EqualTo(expected))
 
 [<Test>]
-let ``User definded indent and indent char can be provided.`` () =
+let ``User defined indent and indent char can be provided.`` () =
     let actual =
         """
         A

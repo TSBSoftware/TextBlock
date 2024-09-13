@@ -1,9 +1,9 @@
 ﻿namespace TextBlock;
 
 using System;
-using System.Text.RegularExpressions;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public static class TextBlockExtentions
 {
@@ -16,7 +16,7 @@ public static class TextBlockExtentions
     /// <returns></returns>
     public static string TextBlock(this string content, int indent = 0, char indentChar = ' ')
     {
-        // Skip the first item to omit the inital newline in the string.
+        // Skip the first item to omit the initial newline in the string.
         var lines = splitToLines(content).Skip(1).ToList();
 
         var indentSize =

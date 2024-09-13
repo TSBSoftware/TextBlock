@@ -11,7 +11,7 @@ F# developers who would like to utilize multiline strings to format content, suc
 To start using TextBlock, install the nuget package into your project file.
 
 ```
-dotnet add package TextBlock
+dotnet add package TSBSoftware.TextBlock
 ```
 
 Then, open the namespace to expose the extension.

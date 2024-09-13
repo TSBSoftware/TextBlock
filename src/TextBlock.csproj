@@ -8,18 +8,23 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<AssemblyName>TSBSoftware.TextBlock</AssemblyName>
 		<Authors>TSBSoftware</Authors>
-		<PackageVersion>1.0.0</PackageVersion>
+		<PackageVersion>1.0.1</PackageVersion>
 		<Company>The Service Bureau</Company>
 		<Title>TextBlock</Title>
-		<Description>Adds Java style TextBlock functionality to multiline strings.</Description>
+		<Description>Adds C# raw string literal style functionality to multiline strings.</Description>
 		<PackageProjectUrl>https://github.com/TSBSoftware/TextBlock</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/TSBSoftware/TextBlock</RepositoryUrl>
 		<PackageTags>string;multiline;textblock</PackageTags>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Include="..\README.md">
+		<None Include="../LICENSE" Pack="true" PackagePath=""/>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Include="../README.md">
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
