@@ -68,6 +68,23 @@ in
 the text.
 ```
 
+Newlines can be escaped with a backslash.
+
+```fsharp
+let myText =
+    """
+    Hello \
+    World!
+    """
+        .TextBlock()
+```
+
+This will escape the newline character and combine the text into a single line:
+
+```
+Hello World!
+```
+
 Spaces at the end of each line can be preserved.
 
 ```fsharp
