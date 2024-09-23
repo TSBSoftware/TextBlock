@@ -28,9 +28,26 @@ let myText =
         .TextBlock()
 ```
 
+This will produce the following string:
+
+```
+<div>
+    <p>Hello</p>
+</div>
+```
+
+Without using TextBlock, there would be an extra level of indentation because
+of how F# processes multiline strings:
+
+```
+    <div>
+        <p>Hello</p>
+    </div>
+```
+
 ## Extra Examples
 
-Strings can contain imbedded newline characters.
+Strings can contain embedded newline characters.
 
 ```fsharp
 let embeddedNewlines =
@@ -62,7 +79,7 @@ let blockedLines =
         .TextBlock()
 ```
 
-This will produce the following. Spaces represended by spaces.
+This will produce the following. Spaces represented by periods.
 
 ```
 Blocked...
@@ -82,7 +99,7 @@ let someHtml =
         .TextBlock(indent = 4, indentChar = '.')
 ```
 
-Will produce indented with the specified intentation.
+This will produce the following:
 
 ```
 ....<div>
