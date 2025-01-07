@@ -6,6 +6,7 @@
 # Items added by TSB
 .ionide/
 Visual Studio*/
+PAT
 
 build/
 build.test/
