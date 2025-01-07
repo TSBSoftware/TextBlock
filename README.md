@@ -2,9 +2,12 @@
 
 Makes F# multiline strings work like C# Raw string literal, or Java text blocks.
 
+
 ## Who is it for?
 
-F# developers who would like to utilize multiline strings to format content, such as: html, xml, sql, templates, etc.
+F# developers who would like to utilize multiline strings to format content,
+such as: html, xml, sql, templates, etc.
+
 
 ## Getting Started
 
@@ -44,6 +47,7 @@ of how F# processes multiline strings:
         <p>Hello</p>
     </div>
 ```
+
 
 ## Extra Examples
 
@@ -103,8 +107,9 @@ Blocked...
 Text......
 ```
 
-Additional indentation can be applied. Indentation character can optionally be applied,
-which is a space by default. We will use a period to show what is applied.
+Additional indentation can be applied. An indentation character can optionally
+be applied, which is a space by default. We will use a period to show what is
+applied.
 
 ```fsharp
 let someHtml =
