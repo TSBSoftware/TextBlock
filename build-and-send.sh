@@ -19,3 +19,4 @@ dotnet build -c Release src/*.csproj
 
 # Push nuget package
 dotnet nuget push src/bin/Release/TSBSoftware.TextBlock.*.nupkg --api-key $API_KEY --source https://api.nuget.org/v3/index.json
+
