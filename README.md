@@ -1,12 +1,13 @@
 # TextBlock
 
-Makes F# multiline strings work like C# Raw string literal, or Java text blocks.
+Makes F# multi-line strings work like C# Raw string literal, or Java text blocks.
+
+This project was inspired after reading an [article](https://www.bytesize.press/java-text-blocks) related to Java Text Blocks. This felt like a missing feature in the F# language, and I wanted to make it available to everyone.
 
 
 ## Who is it for?
 
-F# developers who would like to utilize multiline strings to format content,
-such as: html, xml, sql, templates, etc.
+F# developers who would like to utilize multi-line strings to format content, such as: html, xml, sql, templates, etc.
 
 
 ## Getting Started
@@ -39,8 +40,7 @@ This will produce the following string:
 </div>
 ```
 
-Without using TextBlock, there would be an extra level of indentation because
-of how F# processes multiline strings:
+Without using TextBlock, there would be an extra level of indentation because of how F# processes multi-line strings:
 
 ```
     <div>
@@ -107,9 +107,7 @@ Blocked...
 Text......
 ```
 
-Additional indentation can be applied. An indentation character can optionally
-be applied, which is a space by default. We will use a period to show what is
-applied.
+Additional indentation can be applied. An indentation character can optionally be applied, which is a space by default. We will use a period to show what is applied.
 
 ```fsharp
 let someHtml =
