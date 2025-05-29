@@ -8,10 +8,10 @@
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
 		<AssemblyName>TSBSoftware.TextBlock</AssemblyName>
 		<Authors>TSBSoftware</Authors>
-		<PackageVersion>1.0.3</PackageVersion>
+		<PackageVersion>1.0.4</PackageVersion>
 		<Company>The Service Bureau</Company>
 		<Title>TextBlock</Title>
-		<Description>Adds C# raw string literal style functionality to multiline strings.</Description>
+		<Description>Adds C# Raw String Literal style functionality to multiline strings.</Description>
 		<PackageProjectUrl>https://github.com/TSBSoftware/TextBlock</PackageProjectUrl>
 		<PackageReadmeFile>README.md</PackageReadmeFile>
 		<RepositoryUrl>https://github.com/TSBSoftware/TextBlock</RepositoryUrl>
