@@ -73,7 +73,7 @@ public static class TextBlockExtentions
                 .Where(count => count > 0)
                 .Min();
         }
-        catch (Exception _)
+        catch (Exception)
         {
             return 0;
         }
@@ -84,16 +84,7 @@ public static class TextBlockExtentions
     /// </summary>
     static IEnumerable<string> splitToLines(string content)
     {
-        //using var reader = new StringReader(content);
-        //string line;
-        //while ((line = reader.ReadLine()) != null)
-        //{
-        //    yield return line;
-        //}
-        var stripped =
-            content.StartsWith(Environment.NewLine)
-            ? content.Substring(Environment.NewLine.Length)
-            : content;
+        var stripped = content.TrimStart(['\n', '\r']);
         return stripped.Split([Environment.NewLine], StringSplitOptions.None);
     }
 
