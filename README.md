@@ -125,8 +125,8 @@ let blockedLines =
 This will produce the following. Trailing spaces are shown as dots for clarity.
 
 ```plaintext
-BlockLine···
-Text········
+BlockLine...
+Text........
 ```
 
 You can apply additional indentation with a specified level and an optional character (default is a space).
@@ -138,15 +138,15 @@ let someHtml =
         <p>Hello</p>
     </div>
     """
-        .TextBlock(indent = 4, indentChar = '·')
+        .TextBlock(indent = 4, indentChar = '.')
 ```
 
 This will produce the following:
 
 ```plaintext
-····<div>
-····    <p>Hello</p>
-····</div>
+....<div>
+....    <p>Hello</p>
+....</div>
 ```
 
 ## Notes
