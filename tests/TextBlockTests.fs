@@ -19,7 +19,18 @@ let ``Empty string gets returned.`` () =
 
 [<Test>]
 let ``Simple value on one line is just a string.`` () =
-    let actual = """Hello"""
+    let actual = """Hello""".TextBlock()
+    let expected = "Hello"
+    Assert.That(actual, Is.EqualTo(expected))
+
+[<Test>]
+let ``Simple value on two lines is just a string.`` () =
+
+    let actual =
+        """
+        Hello"""
+            .TextBlock()
+
     let expected = "Hello"
     Assert.That(actual, Is.EqualTo(expected))
 
